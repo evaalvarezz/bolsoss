@@ -5,8 +5,8 @@
  */
 package e.a;
 
-import bolsoseva.GestionBolsos;
-import bolsoseva.GestionFicheros;
+import e.a.GestionBolsos;
+import e.a.GestionFicheros;
 import java.util.Scanner;
 
 /**
