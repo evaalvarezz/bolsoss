@@ -16,8 +16,12 @@ import java.util.Scanner;
 public class GestionBolsos {
     
     protected ArrayList<Bolso> bolsos= new ArrayList<Bolso>(); 
+    protected int hola;
     
     
+            
+            
+            
    
     public void annadirBolso() {
         
