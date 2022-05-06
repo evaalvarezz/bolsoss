@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class GestionBolsos {
     
     protected ArrayList<Bolso> bolsos= new ArrayList<Bolso>(); 
-    protected int hola;
     
     
             
@@ -38,7 +37,9 @@ public class GestionBolsos {
 		int cantidad = scanner.nextInt();
 		System.out.println("Introduzca el precio");
 		double precio = scanner.nextDouble();
-                bolsos.add( new Bolso( marca ,color ,tamaño ,cantidad ,precio));
+                System.out.println("Introduzca el id");
+		int id = scanner.nextInt();
+                bolsos.add( new Bolso( marca ,color ,tamaño ,cantidad ,precio,id));
 		System.out.println("El bolso se ha añadido correctamente");
 	}
 }

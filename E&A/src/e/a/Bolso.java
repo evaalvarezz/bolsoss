@@ -15,13 +15,15 @@ public class Bolso {
     protected String tamaño;
     protected int cantidad;
     protected double precio;
+    protected int id;
 
-    public Bolso( String marca, String color, String tamaño, int cantidad, double precio) {
+    public Bolso(String marca, String color, String tamaño, int cantidad, double precio, int id) {
         this.marca = marca;
         this.color = color;
         this.tamaño = tamaño;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.id = id;
     }
 
     public Bolso() {
@@ -30,6 +32,15 @@ public class Bolso {
         this.tamaño ="GRANDE";
         this.cantidad = 3;
         this.precio = 300; 
+        this.id = 1;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMarca() {
@@ -74,7 +85,7 @@ public class Bolso {
 
     @Override
     public String toString() {
-        return "Bolso{" + "marca=" + marca + ", color=" + color + ", tama\u00f1o=" + tamaño + ", cantidad=" + cantidad + ", precio=" + precio + '}';
+        return "Bolso{" + "marca=" + marca + ", color=" + color + ", tama\u00f1o=" + tamaño + ", cantidad=" + cantidad + ", precio=" + precio + "id="+id+'}';
     }
     
     
