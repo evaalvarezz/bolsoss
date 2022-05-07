@@ -17,15 +17,11 @@ public class GestionBolsos {
     
     protected ArrayList<Bolso> bolsos= new ArrayList<Bolso>(); 
     
-    
-            
-            
-            
-   
+
     public void annadirBolso() {
         
 		Scanner scanner = new Scanner(System.in);
-		boolean correcto = false;
+		
 		
 		System.out.println("Introduzce la marca");
 		String marca = scanner.nextLine();
@@ -42,4 +38,26 @@ public class GestionBolsos {
                 bolsos.add( new Bolso( marca ,color ,tamaño ,cantidad ,precio,id));
 		System.out.println("El bolso se ha añadido correctamente");
 	}
+    
+    public void eliminarBolso(){
+        Scanner scanner = new Scanner(System.in);
+		System.out.println("Introduzce el id");
+		int id = scanner.nextInt();
+                for (int i = 0; i < bolsos.size(); i++) {
+                    if(bolsos.get(i).id==id){
+                        bolsos.remove(i);
+                        System.out.println("El bolso se eliminado correctamente.");
+                    }
+        }
+                
+    }
+    
+    public void listarBolso(){
+
+                for (int i = 0; i < bolsos.size(); i++) {
+                        bolsos.get(i);
+                    
+        }
+                
+    }
 }
