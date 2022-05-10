@@ -5,10 +5,12 @@
  */
 package e.a;
 
+import java.io.File;
+
 /**
  *
  * @author evaal
  */
 public class GestionFicheros {
-    
+    //File usuarios = new File("usuarios");
 }

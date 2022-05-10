@@ -56,7 +56,7 @@ public class Registrado extends Cliente {
 
     @Override
     public String toString() {
-        return "Registrado{" + "fechaAlta=" + fechaAlta + ", contrasennya=" + contrasennya + ", nomUsuario=" + nomUsuario + '}';
+        return super.toString() + "fechaAlta=" + fechaAlta + ", contrasennya=" + contrasennya + ", nomUsuario=" + nomUsuario;
     }
 
     @Override

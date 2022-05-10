@@ -10,5 +10,5 @@ package e.a;
  * @author parjimal
  */
 public class Factura {
-    //crear arraylist con refe
+    //crear arraylist con refe -> se convertirá a file facturas
     }

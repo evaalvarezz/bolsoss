@@ -10,5 +10,13 @@ package e.a;
  * @author parjimal
  */
 public class GestionUsuarios {
-    
+    public void iniciarSesion(){
+        
+    }
+    public void comprar(){
+        
+    }
+    public void devolver(){
+        
+    }
 }

@@ -15,6 +15,7 @@ public abstract class Cliente {
     protected String apellidos;
     protected String direccion;
     protected int numTelf;
+    protected Factura factura;
 
     public Cliente() {
     }
@@ -71,7 +72,7 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion + ", numTelf=" + numTelf + '}';
+        return this.getClass().getSimpleName()+"nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion + ", numTelf=" + numTelf;
     }
     
     
