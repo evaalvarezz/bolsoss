@@ -58,6 +58,10 @@ public class Registrado extends Cliente {
     public String toString() {
         return super.toString() + "fechaAlta=" + fechaAlta + ", contrasennya=" + contrasennya + ", nomUsuario=" + nomUsuario;
     }
+    
+    public String toStringFichero(){
+        return super.toStringFichero() + ";"+ fechaAlta +";"+ contrasennya +";"+ nomUsuario;
+    }
 
     @Override
     public double descuentoCliente() {
