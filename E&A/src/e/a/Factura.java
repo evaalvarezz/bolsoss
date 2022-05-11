@@ -11,4 +11,25 @@ package e.a;
  */
 public class Factura {
     //crear arraylist con refe -> se convertirá a file facturas
+    protected double precioTotal;
+    protected String nifCliente;
+
+    public Factura() {
+        precioTotal=500;
+    }
+
+    public Factura(double precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+    
+   
+    
     }

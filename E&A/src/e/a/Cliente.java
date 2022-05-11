@@ -15,10 +15,7 @@ public abstract class Cliente {
     protected String apellidos;
     protected String direccion;
     protected int numTelf;
-    protected Factura factura;
-
-    public Cliente() {
-    }
+    
 
     public Cliente(String nif, String nombre, String apellidos, String direccion, int numTelf) {
         this.nif = nif;
@@ -26,7 +23,15 @@ public abstract class Cliente {
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.numTelf = numTelf;
+        
     }
+
+    
+    public Cliente() {
+    }
+
+
+ 
     
     public abstract double descuentoCliente();
 
@@ -72,12 +77,14 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+"nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion + ", numTelf=" + numTelf;
+        return this.getClass().getSimpleName()+ "nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion +'}';
     }
+
+   
     
     
     public String toStringFichero()  {
-         return this.getClass().getSimpleName()+ ";" + nif + ";" + nombre + ";" + apellidos + ";" + direccion + ";" + numTelf;
+         return this.getClass().getSimpleName()+ ";" + nif + ";" + nombre + ";" + apellidos + ";" + direccion + ";" + numTelf ;
          
     }
     
