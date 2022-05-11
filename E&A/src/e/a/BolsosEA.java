@@ -61,6 +61,11 @@ public class BolsosEA {
                                 int id = lector.nextInt();
                                 gestionBolso.consultarBolso(id);
                                 break;
+                            case 5:    
+                                
+                                
+                                
+                                
                             default:
                                 System.out.println("ERROR. Introduzca 1, 2 o 3");
                         }
