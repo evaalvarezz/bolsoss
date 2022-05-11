@@ -76,4 +76,9 @@ public abstract class Cliente {
     }
     
     
+    public String toStringFichero()  {
+         return this.getClass().getSimpleName()+ ";" + nif + ";" + nombre + ";" + apellidos + ";" + direccion + ";" + numTelf;
+         
+    }
+    
 }
