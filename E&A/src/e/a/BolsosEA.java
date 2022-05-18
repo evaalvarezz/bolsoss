@@ -20,6 +20,7 @@ public class BolsosEA {
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
         GestionBolsos gestionBolso = new GestionBolsos();
+         GestionUsuarios gestionUsuario = new GestionUsuarios();
 
         int opcion2;
         int opcion;
@@ -61,9 +62,14 @@ public class BolsosEA {
                                 int id = lector.nextInt();
                                 gestionBolso.consultarBolso(id);
                                 break;
-                            case 5:    
-                                
-                                
+                            case 5: 
+                                gestionUsuario.listarUsuarios();
+                                break;
+                            case 6:
+                                gestionUsuario.eliminarUsuario();
+                                        break;
+                              case 7 :
+                               break;
                                 
                                 
                             default:

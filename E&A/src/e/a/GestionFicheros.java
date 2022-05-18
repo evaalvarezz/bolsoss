@@ -103,8 +103,8 @@ public class GestionFicheros {
 				cadena = scan.nextLine();
 				String trozos[] = cadena.split(";");
 				if (trozos[0].equalsIgnoreCase("Invitado")) {
-					//Invitado(String nif, String nombre, String apellidos, String direccion, int numTelf)
-					aux.add(new Invitado(trozos[1], trozos[2], trozos[3], trozos[4], Integer.parseInt(trozos[5])));
+					//Invitado(  String codigoReferido, String nif, String nombre, String apellidos, String direccion, int numTelf
+					aux.add(new Invitado(trozos[1],trozos[2] trozos[3], trozos[4], trozos[5], Integer.parseInt(trozos[6])));
 				}else {
 					//Registrado(String fechaAlta, String contrasennya, String nomUsuario, String nif, String nombre, String apellidos, String direccion, int numTelf)
 					aux.add(new Registrado(trozos[1], trozos[2],trozos[3],trozos[4], trozos[5],trozos[6],trozos[7], Integer.parseInt(trozos[8])));

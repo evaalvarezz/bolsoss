@@ -11,12 +11,23 @@ package e.a;
  */
 public class Invitado extends Cliente{
 
+    protected String codigoReferido;
+
+    public Invitado(String codigoReferido, String nif, String nombre, String apellidos, String direccion, int numTelf) {
+        super(nif, nombre, apellidos, direccion, numTelf);
+        this.codigoReferido = codigoReferido;
+    }
+
+    public Invitado(String codigoReferido) {
+        this.codigoReferido = codigoReferido;
+    }
+
     public Invitado() {
     }
 
-    public Invitado(String nif, String nombre, String apellidos, String direccion, int numTelf) {
-        super(nif, nombre, apellidos, direccion, numTelf);
-    }
+   
+    
+    
 
     @Override
     public double descuentoCliente() {

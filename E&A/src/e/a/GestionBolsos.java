@@ -16,6 +16,26 @@ public class GestionBolsos {
 
     protected ArrayList<Bolso> bolsos = new ArrayList<Bolso>();
 
+    public int ExcepcionPropia() {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("introduce id de bolso");
+        int id = 0;
+
+        try {
+            id = scanner.nextInt();
+            for (int i = 0; i < bolsos.size(); i++) {
+                if (id == bolsos.get(i).id) {
+                    throw new ExcepcionPropia("este id ya esta registrado en un bolso");
+                }
+            }
+        } catch (e.a.ExcepcionPropia ex) {
+            ex.getMessage();
+        }
+
+        return id;
+    }
+
     public void annadirBolso() {
 
         Scanner scanner = new Scanner(System.in);
@@ -30,8 +50,7 @@ public class GestionBolsos {
         int cantidad = scanner.nextInt();
         System.out.println("Introduzca el precio");
         double precio = scanner.nextDouble();
-        System.out.println("Introduzca el id");
-        int id = scanner.nextInt();
+        int id = ExcepcionPropia();
         bolsos.add(new Bolso(marca, color, tamaño, cantidad, precio, id));
         System.out.println("El bolso se ha añadido correctamente");
     }
@@ -58,16 +77,24 @@ public class GestionBolsos {
     }
 
     public void consultarBolso(int id) {
-        boolean bool=false;
-        for (int i = 0; i < bolsos.size() && bool==false; i++) {
-            if(bolsos.get(i).id==id){
+        boolean bool = false;
+        for (int i = 0; i < bolsos.size() && bool == false; i++) {
+            if (bolsos.get(i).id == id) {
                 System.out.println(bolsos.get(i));
-                bool=true;
-                
+                bool = true;
+
             }
         }
-        if(!bool){
+        if (!bool) {
             System.out.println("No se ha encontrado la referencia.");
         }
+    }
+    public ArrayList<Integer> todosIds(){
+        ArrayList<Integer> ids = new ArrayList();
+        for (int i = 0; i < bolsos.size(); i++) {
+            ids.add(bolsos.get(i).id);
+            
+        }
+        return ids;
     }
 }

@@ -56,6 +56,18 @@ public class GestionUsuarios {
 
         }
     }
+      public void eliminarUsuario() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduzce el nif");
+        String nif = scanner.nextLine();
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).nif.equalsIgnoreCase(nif)) {
+               clientes.remove(i);
+                System.out.println("El bolso se eliminado correctamente.");
+            }
+        }
+
+    }
     /*
     public Cliente añadirUsuario() {
         Scanner lector = new Scanner(System.in);
