@@ -58,7 +58,7 @@ public class BolsosEA {
                                 gestionBolso.listarBolso();
                                 break;
                             case 4:
-                                int pos=gestionBolso.consultarBolso();
+                                gestionBolso.consultarBolso();
                                 break;
                             case 5:
                                 gestionUsuario.listarUsuarios();
@@ -67,10 +67,12 @@ public class BolsosEA {
                                 gestionUsuario.eliminarUsuario();
                                 break;
                             case 7:
-                                //gestionFactura.listarFactura();
+                                gestionFactura.listarFacturas();
                                 break;
                             case 8:
-                                //gestionFactura.eliminarFactura();
+                                System.out.println("Introduce la referencia: ");
+                                String refe = lector.next();
+                                gestionFactura.eliminarFactura(refe);
                                 break;
                             default:
                                 System.out.println("ERROR. Introduzca 1, 2 o 3");
@@ -81,17 +83,17 @@ public class BolsosEA {
                 }
             } else if (opcion == 2) {
                 int opc;
-                do{
+                do {
                     System.out.println("Inicio de sesión\n");
                     System.out.println("1. Iniciar sesión");
                     System.out.println("2. Registrarse");
                     System.out.println("3. Invitado");
-                    opc=lector.nextInt();
-                    switch(opc){
+                    opc = lector.nextInt();
+                    switch (opc) {
                         case 1:
                             //gestionUsuario.inicio();
                             break;
-                        case 2: 
+                        case 2:
                             gestionUsuario.anyadirUsuario();
                             break;
                         case 3:
@@ -100,15 +102,16 @@ public class BolsosEA {
                         default:
                             System.out.println("Error, vuelva a intentarlo.");
                     }
-                }while(opc<1 && opc>3);
+                } while (opc < 1 && opc > 3);
                 do {
-                    int pos;
+                    int posicion, id;
+                    String refe;
                     System.out.println("Bienvenido usuario \n");
                     System.out.println("1.Listar bolsos por precio ascendente");
                     System.out.println("2.Descripcion de bolso");
                     System.out.println("3.Comprar bolso");
-                    System.out.println("4.Delvolver bolso");
-                    System.out.println("5.Revisar factura");
+                    System.out.println("4.Revisar factura");
+                    System.out.println("5.Devolver compra");
                     System.out.println("6.Salir");
                     opcion2 = lector.nextInt();
                     switch (opcion2) {
@@ -116,28 +119,41 @@ public class BolsosEA {
                             gestionBolso.listarBolsoAsc();
                             break;
                         case 2:
-                            pos = gestionBolso.consultarBolso();
+                            gestionBolso.consultarBolso();
                             break;
                         case 3:
-                            pos = gestionBolso.consultarBolso();
-                            boolean bool = gestionBolso.comprarBolso(pos);
-                            if(bool){
-                                //int precioTotal, String nifCliente, ArrayList idBolso
-                                //gestionFactura.add(new Factura(gestionBolso.bolsos.get(pos).precio, gestionUsuario.clientes ... ));
-                                //Realizar compra
-                                //gestionFactura.generar();
+                            System.out.println("Escriba el id del bolso: ");
+                            id = lector.nextInt();
+                            posicion = gestionBolso.posBolso(id);
+                            if (gestionBolso.comprarBolso(posicion)) {
+                                //                                      String refe, int precioTotal, String nifCliente, int idBolso
+                                gestionFactura.facturas.add(new Factura(gestionFactura.newRefe(), gestionBolso.bolsos.get(posicion).precio, gestionUsuario.clientes.get(0).nif, id));
                             }
                             break;
                         case 4:
-                            
+                            System.out.println("Escriba la referencia de su factura: ");
+                            refe = lector.next();
+
+                            if (gestionFactura.existeFactura(refe)) {
+                                gestionFactura.consultarFacturas(refe);
+                            } else {
+                                System.out.println("No existe la factura.");
+                            }
                             break;
                         case 5:
-                            
+                            System.out.println("Escriba la referencia de su factura: ");
+                            refe = lector.next();
+                            if (gestionFactura.existeFactura(refe)) {
+                                gestionFactura.eliminarFactura(refe);
+                                System.out.println("Recibirá su dinero en media hora. Muchas gracias por su compra.");
+                            } else {
+                                System.out.println("No existe la factura.");
+                            }
                             break;
                         default:
-                            System.out.println("ERROR. Introduzca la opción");
+                            System.out.println("ERROR. Introduzca opción de nuevo");
                     }
-                } while (opcion2 != 4);
+                } while (opcion2 != 6);
             } else {
                 System.out.println("Hasta pronto");
             }

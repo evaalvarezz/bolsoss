@@ -82,41 +82,61 @@ public class GestionBolsos {
             System.out.println(copia.get(i));
         }
     }
+    
+    public boolean existeBolso(int id){
+        boolean bool=false;
+        for (int i = 0; i < bolsos.size() && bool == false; i++) {
+            if (bolsos.get(i).id == id) {
+                bool = true;
+            }
+        }
+        return bool;
+    }
 
-    public int consultarBolso() {
+    public void consultarBolso() {
         Scanner lector = new Scanner(System.in);
         System.out.println("Escribe el id del bolso");
         int id = lector.nextInt();
         boolean bool = false;
-        int pos=0;
         for (int i = 0; i < bolsos.size() && bool == false; i++) {
             if (bolsos.get(i).id == id) {
                 System.out.println(bolsos.get(i));
-                pos=i;
                 bool = true;
             }
         }
         if (!bool) {
             System.out.println("No se ha encontrado la referencia.");
         }
+    }
+    public int posBolso(int id){
+        boolean bool = false;
+        int pos=0;
+        for (int i = 0; i < bolsos.size() && !bool; i++) {
+             if (bolsos.get(i).id == id){
+                 pos=i;
+                 bool=true;
+             }
+        }
         return pos;
     }
-    public boolean comprarBolso(int pos){
-        boolean bool = false;
-        if(bolsos.get(pos).cantidad!=0){
+    public boolean comprarBolso(int posicion){
+        boolean bool=false;
+        if(bolsos.get(posicion).cantidad!=0){ //hay bolsos
+            bolsos.get(posicion).cantidad --; 
             bool=true;
         }
-        else{
+        else{ //existen 0 bolsos
             System.out.println("Lo sentimos, no se puede comprar");
         }
+        
         return bool;
     }
-    
+    /*
     public ArrayList<Integer> todosIds(){
         ArrayList<Integer> ids = new ArrayList();
         for (int i = 0; i < bolsos.size(); i++) {
             ids.add(bolsos.get(i).id);
         }
         return ids;
-    }
+    }*/
 }

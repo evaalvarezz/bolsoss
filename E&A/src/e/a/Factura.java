@@ -5,43 +5,40 @@
  */
 package e.a;
 
-import java.util.ArrayList;
 
 /**
  *
  * @author parjimal
  */
 public class Factura {
-    GestionBolsos gestionBolso = new GestionBolsos();
     //crear arraylist con refe -> se convertirá a file facturas
+    protected String refe;
     protected int precioTotal;
     protected String nifCliente;
-    protected ArrayList<Integer> idBolso = new ArrayList();
+    protected int idBolso;
       
 
     public Factura() {
+        refe = "1";
         precioTotal = 500;
         nifCliente = "00988";
-        idBolso=gestionBolso.todosIds();
-        
+        idBolso=1;
     }
 
-    public Factura(int precioTotal, String nifCliente, ArrayList idBolso) {
+    public Factura(String refe, int precioTotal, String nifCliente, int idBolso) {
+        this.refe = refe;
         this.precioTotal = precioTotal;
         this.nifCliente = nifCliente;
         this.idBolso = idBolso;
     }
 
-    public ArrayList<Integer> getIdBolso() {
-        return idBolso;
+    public String getRefe() {
+        return refe;
     }
 
-    public void setIdBolso(ArrayList<Integer> idBolso) {
-        this.idBolso = idBolso;
+    public void setRefe(String refe) {
+        this.refe = refe;
     }
-    
-    
-    
 
     public int getPrecioTotal() {
         return precioTotal;
@@ -59,17 +56,19 @@ public class Factura {
         this.nifCliente = nifCliente;
     }
 
-    
+    public int getIdBolso() {
+        return idBolso;
+    }
 
- 
+    public void setIdBolso(int idBolso) {
+        this.idBolso = idBolso;
+    }
 
     @Override
     public String toString() {
-        return "Factura{" + "precioTotal=" + precioTotal + ", nifCliente=" + nifCliente + ", idBolso=" + idBolso + '}';
+        return "Factura{" + "refe=" + refe + ", precioTotal=" + precioTotal + ", nifCliente=" + nifCliente + ", idBolso=" + idBolso + '}';
     }
     
-
-   
    
     
     }

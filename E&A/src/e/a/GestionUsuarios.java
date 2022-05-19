@@ -164,17 +164,6 @@ public class GestionUsuarios {
     }
 */
      
-     
-    
-    public void iniciarSesion(){
-        
-    }
-    public void comprar(){
-        
-    }
-    public void devolver(){
-        
-    }
 
     @Override
     public String toString() {
