@@ -28,6 +28,11 @@ public abstract class Cliente {
 
     
     public Cliente() {
+        nif="00000000-T";
+        nombre="Juana";
+        apellidos="Álvarez";
+        direccion="Calle Leona 1";
+        numTelf=666666666;
     }
 
 

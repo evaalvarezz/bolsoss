@@ -15,5 +15,14 @@ public class GestionFactura {
     
     protected ArrayList<Factura> facturas= new ArrayList<Factura>();
     
+    public void generarFactura(){
+        
+    }
     
+    public void leerFacturas(){
+        
+    }
+    public void consultarFacturas(int id){
+        
+    }
 }

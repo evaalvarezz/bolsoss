@@ -14,21 +14,9 @@ import java.util.Scanner;
  */
 public class GestionUsuarios {
     
-     protected ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-
-    public GestionUsuarios(ArrayList<Cliente> cliente) {
-        this.clientes = cliente;
-    }
-
-    public ArrayList<Cliente> getCliente() {
-        return clientes;
-    }
-
-    public void setCliente(ArrayList<Cliente> cliente) {
-        this.clientes = cliente;
-    }
+    protected ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     
-     public GestionUsuarios() {
+    public GestionUsuarios() {
         clientes = new ArrayList();
         for (int i = 0; i < 5; i++) {
             if (i % 2 == 0) {
@@ -49,6 +37,20 @@ public class GestionUsuarios {
         }
 
     }
+    
+    public GestionUsuarios(ArrayList<Cliente> cliente) {
+        this.clientes = cliente;
+    }
+
+    public ArrayList<Cliente> getCliente() {
+        return clientes;
+    }
+
+    public void setCliente(ArrayList<Cliente> cliente) {
+        this.clientes = cliente;
+    }
+    
+     
 
     public void listarUsuarios() {
         for (int i = 0; i < clientes.size(); i++) {
@@ -68,6 +70,10 @@ public class GestionUsuarios {
         }
 
     }
+      public void anyadirUsuario(){
+          
+      }
+      
     /*
     public Cliente añadirUsuario() {
         Scanner lector = new Scanner(System.in);

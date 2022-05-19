@@ -14,19 +14,19 @@ import java.util.ArrayList;
 public class Factura {
     GestionBolsos gestionBolso = new GestionBolsos();
     //crear arraylist con refe -> se convertirá a file facturas
-    protected double precioTotal;
+    protected int precioTotal;
     protected String nifCliente;
     protected ArrayList<Integer> idBolso = new ArrayList();
       
 
     public Factura() {
-        this.precioTotal = 500;
-        this.nifCliente = "00988";
-        this.idBolso=gestionBolso.todosIds();
+        precioTotal = 500;
+        nifCliente = "00988";
+        idBolso=gestionBolso.todosIds();
         
     }
 
-    public Factura(double precioTotal, String nifCliente, ArrayList idBolso) {
+    public Factura(int precioTotal, String nifCliente, ArrayList idBolso) {
         this.precioTotal = precioTotal;
         this.nifCliente = nifCliente;
         this.idBolso = idBolso;
@@ -43,11 +43,11 @@ public class Factura {
     
     
 
-    public double getPrecioTotal() {
+    public int getPrecioTotal() {
         return precioTotal;
     }
 
-    public void setPrecioTotal(double precioTotal) {
+    public void setPrecioTotal(int precioTotal) {
         this.precioTotal = precioTotal;
     }
 

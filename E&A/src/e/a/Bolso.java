@@ -9,18 +9,18 @@ package e.a;
  *
  * @author evaal
  */
-public class Bolso {
+public class Bolso implements Comparable<Bolso>{
     protected String marca;
     protected String color;
-    protected String tamaño;
+    protected String tamanyo;
     protected int cantidad;
-    protected double precio;
+    protected int precio;
     protected int id;
 
-    public Bolso(String marca, String color, String tamaño, int cantidad, double precio, int id) {
+    public Bolso(String marca, String color, String tamaño, int cantidad, int precio, int id) {
         this.marca = marca;
         this.color = color;
-        this.tamaño = tamaño;
+        this.tamanyo = tamaño;
         this.cantidad = cantidad;
         this.precio = precio;
         this.id = id;
@@ -29,7 +29,7 @@ public class Bolso {
     public Bolso() {
         this.marca = "CHANEL";
         this.color = "BLANCO";
-        this.tamaño ="GRANDE";
+        this.tamanyo ="GRANDE";
         this.cantidad = 3;
         this.precio = 300; 
         this.id = 1;
@@ -59,12 +59,12 @@ public class Bolso {
         this.color = color;
     }
 
-    public String getTamaño() {
-        return tamaño;
+    public String getTamanyo() {
+        return tamanyo;
     }
 
-    public void setTamaño(String tamaño) {
-        this.tamaño = tamaño;
+    public void setTamanyo(String tamanyo) {
+        this.tamanyo = tamanyo;
     }
 
     public int getCantidad() {
@@ -75,17 +75,23 @@ public class Bolso {
         this.cantidad = cantidad;
     }
 
-    public double getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 
     @Override
     public String toString() {
-        return "Bolso{" + "marca=" + marca + ", color=" + color + ", tama\u00f1o=" + tamaño + ", cantidad=" + cantidad + ", precio=" + precio + "id="+id+'}';
+        return "Bolso{" + "marca=" + marca + ", color=" + color + ", tamanyo=" + tamanyo + ", cantidad=" + cantidad + ", precio=" + precio + "id="+id+'}';
+    }
+
+    @Override
+    public int compareTo(Bolso arg0) {
+        //return this.color.compareTo(arg0.color);//por String
+        return Integer.compare(this.id, arg0.id);
     }
     
     

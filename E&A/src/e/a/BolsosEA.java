@@ -6,7 +6,6 @@
 package e.a;
 
 import java.util.Scanner;
-import e.a.GestionUsuarios;
 
 /**
  *
@@ -20,7 +19,8 @@ public class BolsosEA {
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
         GestionBolsos gestionBolso = new GestionBolsos();
-         GestionUsuarios gestionUsuario = new GestionUsuarios();
+        GestionUsuarios gestionUsuario = new GestionUsuarios();
+        GestionFactura gestionFactura = new GestionFactura();
 
         int opcion2;
         int opcion;
@@ -58,31 +58,53 @@ public class BolsosEA {
                                 gestionBolso.listarBolso();
                                 break;
                             case 4:
-                                System.out.println("Introduce el id");
-                                int id = lector.nextInt();
-                                gestionBolso.consultarBolso(id);
+                                int pos=gestionBolso.consultarBolso();
                                 break;
-                            case 5: 
+                            case 5:
                                 gestionUsuario.listarUsuarios();
                                 break;
                             case 6:
                                 gestionUsuario.eliminarUsuario();
-                                        break;
-                              case 7 :
-                               break;
-                                
-                                
+                                break;
+                            case 7:
+                                //gestionFactura.listarFactura();
+                                break;
+                            case 8:
+                                //gestionFactura.eliminarFactura();
+                                break;
                             default:
                                 System.out.println("ERROR. Introduzca 1, 2 o 3");
                         }
-                    } while (opcion2 != 5);
+                    } while (opcion2 != 9);
                 } else {
                     System.out.println("Contraseña errónea.");
                 }
             } else if (opcion == 2) {
+                int opc;
+                do{
+                    System.out.println("Inicio de sesión\n");
+                    System.out.println("1. Iniciar sesión");
+                    System.out.println("2. Registrarse");
+                    System.out.println("3. Invitado");
+                    opc=lector.nextInt();
+                    switch(opc){
+                        case 1:
+                            //gestionUsuario.inicio();
+                            break;
+                        case 2: 
+                            gestionUsuario.anyadirUsuario();
+                            break;
+                        case 3:
+                            //invitado
+                            break;
+                        default:
+                            System.out.println("Error, vuelva a intentarlo.");
+                    }
+                }while(opc<1 && opc>3);
                 do {
-                    System.out.println("Bienvenido usuario. Que deseea hacer ");
-                    System.out.println("1.Listar bolsos");
+                    int pos;
+                    System.out.println("Bienvenido usuario \n");
+                    System.out.println("1.Listar bolsos por precio ascendente");
                     System.out.println("2.Descripcion de bolso");
                     System.out.println("3.Comprar bolso");
                     System.out.println("4.Delvolver bolso");
@@ -91,14 +113,25 @@ public class BolsosEA {
                     opcion2 = lector.nextInt();
                     switch (opcion2) {
                         case 1:
-                            gestionBolso.listarBolso();
+                            gestionBolso.listarBolsoAsc();
                             break;
                         case 2:
-                            System.out.println("Introduce el id");
-                            int id = lector.nextInt();
-                            gestionBolso.consultarBolso(id);
+                            pos = gestionBolso.consultarBolso();
                             break;
                         case 3:
+                            pos = gestionBolso.consultarBolso();
+                            boolean bool = gestionBolso.comprarBolso(pos);
+                            if(bool){
+                                //int precioTotal, String nifCliente, ArrayList idBolso
+                                //gestionFactura.add(new Factura(gestionBolso.bolsos.get(pos).precio, gestionUsuario.clientes ... ));
+                                //Realizar compra
+                                //gestionFactura.generar();
+                            }
+                            break;
+                        case 4:
+                            
+                            break;
+                        case 5:
                             
                             break;
                         default:

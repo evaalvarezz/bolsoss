@@ -23,16 +23,16 @@ public class Invitado extends Cliente{
     }
 
     public Invitado() {
+        super();
+        codigoReferido= "001";
     }
-
-   
-    
-    
-
     @Override
     public double descuentoCliente() {
         double descuento=0.95;
         return descuento;
     }
-    
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+ "codigoReferido=" + codigoReferido + '}';
+    }
 }
