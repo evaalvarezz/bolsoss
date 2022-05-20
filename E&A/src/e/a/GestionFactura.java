@@ -33,6 +33,9 @@ public class GestionFactura {
             }
         }
     }
+    public void eliminarTodo(){
+        facturas=null;
+    }
     public boolean existeFactura(String refe){
         boolean bool=false;
         for (int i = 0; i < facturas.size() && !bool; i++) {

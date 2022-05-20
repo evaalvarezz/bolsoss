@@ -28,7 +28,11 @@ public class Invitado extends Cliente{
     }
     @Override
     public double descuentoCliente() {
-        double descuento=0.95;
+        double descuento;
+        if(codigoReferido.equalsIgnoreCase("000"))
+            descuento=0.95; //5%
+        else
+            descuento=0.7;  //30%
         return descuento;
     }
     @Override

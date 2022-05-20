@@ -5,7 +5,9 @@
  */
 package e.a;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -13,14 +15,24 @@ import java.util.Scanner;
  * @author parjimal
  */
 public class GestionUsuarios {
-    
-    protected ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    
+
+    protected static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    protected String sesion = new String();
+
+   
+    public String getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(String sesion) {
+        this.sesion = sesion;
+    }
+
     public GestionUsuarios() {
         clientes = new ArrayList();
         for (int i = 0; i < 5; i++) {
             if (i % 2 == 0) {
-               clientes.add(new Invitado());
+                clientes.add(new Invitado());
             } else {
                 clientes.add(new Registrado());
             }
@@ -30,14 +42,14 @@ public class GestionUsuarios {
     public GestionUsuarios(int cuantos) {
         for (int i = 0; i < cuantos; i++) {
             if (i % 2 == 0) {
-               clientes.add(new Invitado());
+                clientes.add(new Invitado());
             } else {
                 clientes.add(new Registrado());
             }
         }
 
     }
-    
+
     public GestionUsuarios(ArrayList<Cliente> cliente) {
         this.clientes = cliente;
     }
@@ -49,8 +61,35 @@ public class GestionUsuarios {
     public void setCliente(ArrayList<Cliente> cliente) {
         this.clientes = cliente;
     }
+
+    //revisar tema static importante
+    public static boolean eresReferido(String nif) {
+        boolean bool = false;
+        for (int i = 0; i < clientes.size() && !bool; i++) {
+            if (clientes.get(i) instanceof Invitado && ((Invitado) (clientes.get(i))).codigoReferido.equalsIgnoreCase(nif)) {
+                bool = true;
+            }
+        }
+        return bool;
+    }
     
-     
+    public int inicio(){
+        int n=5666;
+        boolean bool=false;
+        Scanner lector= new Scanner(System.in);
+        System.out.println("Introduce el username: ");
+        String user=lector.nextLine();
+        System.out.println("Introduce la contraseña: ");
+        String pass=lector.nextLine();
+        
+        for (int i = 0; i < clientes.size() && !bool; i++) {
+            if(clientes.get(i) instanceof Registrado && ((Registrado)clientes.get(i)).nomUsuario.equalsIgnoreCase(user) && ((Registrado)clientes.get(i)).contrasennya.equalsIgnoreCase(pass)){
+                bool=true;
+                n=i;
+            }
+        }
+        return n;
+    }
 
     public void listarUsuarios() {
         for (int i = 0; i < clientes.size(); i++) {
@@ -58,118 +97,40 @@ public class GestionUsuarios {
 
         }
     }
-      public void eliminarUsuario() {
-        Scanner scanner = new Scanner(System.in);
+
+    public void eliminarUsuario() {
+        Scanner lector = new Scanner(System.in);
         System.out.println("Introduzce el nif");
-        String nif = scanner.nextLine();
+        String nif = lector.nextLine();
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).nif.equalsIgnoreCase(nif)) {
-               clientes.remove(i);
+                clientes.remove(i);
                 System.out.println("El bolso se eliminado correctamente.");
             }
         }
 
     }
-      public void anyadirUsuario(){
-          
-      }
-      
-    /*
-    public Cliente añadirUsuario() {
+
+    public void anyadirUsuario() {
         Scanner lector = new Scanner(System.in);
-        int numero = 0;
-        boolean correcto;
-        String nombre;
-        String nif;
-        String apellidos;
-        String direccion;
-        int numTelf;
-        double precio;
-        Factura facturra = null;
-          do {
-            System.out.println("Añadir Cliente");
-            do {
-                correcto = true;
+        String fechaAlta = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        System.out.println("Introduce nomUsuario(String): ");
+        String nomUsuario = lector.nextLine();
+        System.out.println("Introduce contraseña(string): ");
+        String contrasennya = lector.nextLine();
+        System.out.println("Introduce nombre: ");
+        String nom = lector.nextLine();
+        System.out.println("Introduce apellidos: ");
+        String ap = lector.nextLine();
+        System.out.println("Introduce DNI: ");
+        String nif = lector.nextLine();
+        System.out.println("Introduce direccion: ");
+        String dir = lector.nextLine();
+        System.out.println("Introduce un número de teléfono: ");
+        int num = lector.nextInt();
 
-                System.out.println("1. cliente nuevo.");
-                System.out.println("2. cliente registrado.");
-                System.out.println("3. añadir y salir.");
-                try {
-                    numero = lector.nextInt();
-                    if (numero == 1 || numero == 2) {
-                        System.out.println("Introduce el nombre.");
-                        lector.nextLine();
-                        nombre = lector.nextLine();
-                       System.out.println("Introduce el nif.");
-                        lector.nextLine();
-                        nif = lector.nextLine();
-                        System.out.println("Introduceapellidos.");
-                        apellidos = lector.nextLine();
-                        System.out.println("Introduce direccion.");
-                        direccion = lector.nextLine();
-                        System.out.println("Introduce numero de telefono.");
-                        numTelf = lector.nextInt();
-                        do {
-                            try {
-                                System.out.println("Introduce dia,mes y anyo");
-                                fecha = new Fecha(lector.nextInt(), lector.nextInt(), lector.nextInt());
-                                Vuelos.excepcionFecha(fecha);
-                                fechaCorrecta = true;
-                            } catch (ExcepcionFecha e) {
-                                System.out.println("Por favor, introduce una fecha correcta.");
-                                System.out.println(e.getMessage());
-                                fechaCorrecta = false;
-                            }
-                        } while (!fechaCorrecta);
-                        switch (numero) {
-                            case 1:
-                                System.out.println("Vuelo Nacional creado correctamente. Pulsa 3 para salir y añadir");
-                                aux = new Nacionales( id, nombre,  origen,  destino,  fecha,  nPasajeros,precio);
-                                break;
-                            case 2:
-                                 boolean escala=false;
-                                
-                        System.out.println("introduce si te vuelo tiene escala true/false");
-                        escala=lector.hasNext();
-                        
-                        if(escala==true)
-                             System.out.println("Introduce ciudades separas por /");
-                             String paradas = lector.nextLine();  
-                        
-                        aux = new Internacionales(  escala,  paradas,  id, nombre,  origen,  destino,  fecha,  nPasajeros,  precio);
-                            
-                                break;
-                            case 3:
-                                System.out.println("Vuelo Nacional creado correctamente. Pulsa 3 para salir y añadir");
-                                break;
-                            default:
-                                System.out.println("Por favor, introduce un número entre 1 y 3 para seleccionar.");
+        //String fechaAlta, String contrasennya, String nomUsuario, String nif, String nombre, String apellidos, String direccion, int numTelf
+        clientes.add(new Registrado(fechaAlta, contrasennya, nomUsuario, nif, nom, ap, dir, num));
 
-                        }
-
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Por favor, introduce un número en lugar de una letra para seleccionar.");
-                    lector.nextLine();
-                    correcto = false;
-                }
-            } while (!correcto);
-        } while (numero != 3);
-        return aux;
     }
-
-    public void agregarVuelos(Vuelos a) {
-        vuelos.add(a);
-        System.out.println("Los vuelos creados han sido añadidos correctamente.");
-    }
-*/
-     
-
-    @Override
-    public String toString() {
-        return "GestionUsuarios{" + "clientes=" + clientes + '}';
-    }
-    
-   
-    
 }

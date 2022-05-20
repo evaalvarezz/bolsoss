@@ -65,7 +65,11 @@ public class Registrado extends Cliente {
 
     @Override
     public double descuentoCliente() {
-        double descuento=0.8;
+        double descuento;
+        if(GestionUsuarios.eresReferido(nif))
+            descuento=0.5; //50%
+        else
+            descuento=0.8; //20%
         
         return descuento;
     }

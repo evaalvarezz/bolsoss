@@ -18,25 +18,28 @@ public class BolsosEA {
      */
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
+        Administrador admin = new Administrador(); //user: admin , pass:1234
         GestionBolsos gestionBolso = new GestionBolsos();
         GestionUsuarios gestionUsuario = new GestionUsuarios();
         GestionFactura gestionFactura = new GestionFactura();
+        int posRegistrado;
 
         int opcion2;
         int opcion;
         do {
-            System.out.println("Bienvenidos a bolsos guays");
+            System.out.println("Bienvenidos a bolsos guays\n");
             System.out.println("1.Soy empleado");
             System.out.println("2.Soy cliente");
             System.out.println("3.Salir de bolsos guays");
             opcion = lector.nextInt();
             if (opcion == 1) {
-                System.out.println("Introduce contraseña(5584)");
-                String cadena = lector.next();
-                String contrasenya = "5584";
-                if (cadena.equalsIgnoreCase(contrasenya)) {
+                System.out.println("Introduce usuario");
+                String usuario = lector.nextLine();
+                System.out.println("Introduce contraseña");
+                String pass = lector.nextLine();
+                if (admin.login(usuario, pass)) {
                     do {
-                        System.out.println("Bienvenido empleado. Que deseea hacer ");
+                        System.out.println("Bienvenido administrador. Que deseea hacer ");
                         System.out.println("1.Añadir bolso");
                         System.out.println("2.Eliminar bolso");
                         System.out.println("3.Listar bolso");
@@ -45,7 +48,8 @@ public class BolsosEA {
                         System.out.println("6.Eliminar usuario");
                         System.out.println("7.Listar facturas");
                         System.out.println("8.Eliminar factura");
-                        System.out.println("9.Salir");
+                        System.out.println("9.Eliminar todas las facturas");
+                        System.out.println("10.Salir");
                         opcion2 = lector.nextInt();
                         switch (opcion2) {
                             case 1:
@@ -74,35 +78,47 @@ public class BolsosEA {
                                 String refe = lector.next();
                                 gestionFactura.eliminarFactura(refe);
                                 break;
+                            case 9:
+                                System.out.println("¿Estás seguro? (Y/N)");
+                                if (lector.nextLine().equalsIgnoreCase("Y")) {
+                                    gestionFactura.eliminarTodo();
+                                }
+                                System.out.println("Facturas limpiadas con éxito.");
+                                break;
                             default:
-                                System.out.println("ERROR. Introduzca 1, 2 o 3");
+                                System.out.println("ERROR. Introduzca la opcion deseada");
                         }
-                    } while (opcion2 != 9);
+                    } while (opcion2 != 10);
                 } else {
-                    System.out.println("Contraseña errónea.");
+                    System.out.println("Credenciales erróneas, vuelve a intentarlo.");
                 }
             } else if (opcion == 2) {
                 int opc;
                 do {
                     System.out.println("Inicio de sesión\n");
                     System.out.println("1. Iniciar sesión");
-                    System.out.println("2. Registrarse");
+                    System.out.println("2. Registrar una cuenta");
                     System.out.println("3. Invitado");
                     opc = lector.nextInt();
                     switch (opc) {
                         case 1:
-                            //gestionUsuario.inicio();
+                            posRegistrado = gestionUsuario.inicio();
+                            if (posRegistrado == 5666) {
+                                System.out.println("Credenciales incorrectas. Vuelva a intentarlo.");
+                            } else {
+                                gestionUsuario.sesion = "Registrado";
+                            }
                             break;
                         case 2:
                             gestionUsuario.anyadirUsuario();
                             break;
                         case 3:
-                            //invitado
+                            gestionUsuario.sesion = "Invitado";
                             break;
                         default:
                             System.out.println("Error, vuelva a intentarlo.");
                     }
-                } while (opc < 1 && opc > 3);
+                } while (opc == 2 || opc != 1 || opc != 3);
                 do {
                     int posicion, id;
                     String refe;
