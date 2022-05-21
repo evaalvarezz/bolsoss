@@ -23,6 +23,12 @@ public class GestionFactura {
             facturas.get(i);
         }
     }
+    
+    public void crearFactura(int precio, String nif, int id){
+        //                      String refe, int precioTotal, String nifCliente, int idBolso
+        facturas.add(new Factura(newRefe(), precio, nif, id));
+    }
+    
     public void eliminarFactura(String refe){
         boolean bool=false;
         for (int i = 0; i < facturas.size()&& !bool; i++) {

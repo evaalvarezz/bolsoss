@@ -17,6 +17,11 @@ public class GestionBolsos {
 
     protected ArrayList<Bolso> bolsos = new ArrayList<Bolso>();
 
+    /**
+     * Método que incorpora una Exception. En caso de crear un Bolso con id duplicado <br>
+     * crea bucle infinito.
+     * @return id del nuevo Bolso
+     */
     public int ExcepcionPropia() {
 
         Scanner scanner = new Scanner(System.in);
@@ -37,6 +42,9 @@ public class GestionBolsos {
         return id;
     }
 
+    /**
+     * Método que añade un Bolso al ArrayList bolsos
+     */
     public void annadirBolso() {
 
         Scanner scanner = new Scanner(System.in);
@@ -56,6 +64,9 @@ public class GestionBolsos {
         System.out.println("El bolso se ha añadido correctamente");
     }
 
+    /**
+     * Método que elimina un Bolso del ArrayList bolsos
+     */
     public void eliminarBolso() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduzce el id");
@@ -69,12 +80,18 @@ public class GestionBolsos {
 
     }
 
+    /**
+     * Método que lista todos los Bolso del ArrayList bolsos
+     */
     public void listarBolso() {
         for (int i = 0; i < bolsos.size(); i++) {
             System.out.println(bolsos.get(i));
         }
     }
     
+    /**
+     * Método que lista todos los Bolso por precio ascendente del ArrayList bolsos
+     */
     public void listarBolsoAsc(){
         ArrayList<Bolso> copia = new ArrayList(bolsos);
         Collections.sort(copia, new porPrecio());
@@ -83,6 +100,11 @@ public class GestionBolsos {
         }
     }
     
+    /**
+     * Método que comprueba si existe un Bolso en ArrayList bolsos
+     * @param id de Bolso
+     * @return si existe o no
+     */
     public boolean existeBolso(int id){
         boolean bool=false;
         for (int i = 0; i < bolsos.size() && bool == false; i++) {
@@ -93,6 +115,9 @@ public class GestionBolsos {
         return bool;
     }
 
+    /**
+     * Método que llama al toString el Bolso a partir de su id.
+     */
     public void consultarBolso() {
         Scanner lector = new Scanner(System.in);
         System.out.println("Escribe el id del bolso");
@@ -108,6 +133,12 @@ public class GestionBolsos {
             System.out.println("No se ha encontrado la referencia.");
         }
     }
+    
+    /**
+     * Método que mediante el id de Bolso, retorna su posicion en ArrayList bolsos.
+     * @param id de Bolso
+     * @return posicion en bolsos
+     */
     public int posBolso(int id){
         boolean bool = false;
         int pos=0;
@@ -119,6 +150,12 @@ public class GestionBolsos {
         }
         return pos;
     }
+    /**
+     * Método que comprueba si quedan bolsos de la posicion especificada.<br>
+     * En caso de cantidad &gt; 0, la reduce en 1.
+     * @param posicion
+     * @return Si se ha realizado o no la deduccion de cantidad.
+     */
     public boolean comprarBolso(int posicion){
         boolean bool=false;
         if(bolsos.get(posicion).cantidad!=0){ //hay bolsos
@@ -126,11 +163,13 @@ public class GestionBolsos {
             bool=true;
         }
         else{ //existen 0 bolsos
-            System.out.println("Lo sentimos, no se puede comprar");
+            System.out.println("Lo sentimos, no quedan existencias.");
         }
         
         return bool;
     }
+    
+    
     /*
     public ArrayList<Integer> todosIds(){
         ArrayList<Integer> ids = new ArrayList();

@@ -11,13 +11,15 @@ package e.a;
  * @author parjimal
  */
 public class Factura {
-    //crear arraylist con refe -> se convertirá a file facturas
     protected String refe;
     protected int precioTotal;
     protected String nifCliente;
     protected int idBolso;
       
 
+    /**
+     * Constructor predefinido
+     */
     public Factura() {
         refe = "1";
         precioTotal = 500;
@@ -25,6 +27,13 @@ public class Factura {
         idBolso=1;
     }
 
+    /**
+     * Constructor con todos los atributos
+     * @param refe
+     * @param precioTotal
+     * @param nifCliente
+     * @param idBolso 
+     */
     public Factura(String refe, int precioTotal, String nifCliente, int idBolso) {
         this.refe = refe;
         this.precioTotal = precioTotal;

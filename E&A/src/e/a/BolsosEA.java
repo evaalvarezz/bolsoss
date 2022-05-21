@@ -22,7 +22,7 @@ public class BolsosEA {
         GestionBolsos gestionBolso = new GestionBolsos();
         GestionUsuarios gestionUsuario = new GestionUsuarios();
         GestionFactura gestionFactura = new GestionFactura();
-        int posRegistrado;
+        int posRegistrado=5666;
 
         int opcion2;
         int opcion;
@@ -102,7 +102,7 @@ public class BolsosEA {
                     opc = lector.nextInt();
                     switch (opc) {
                         case 1:
-                            posRegistrado = gestionUsuario.inicio();
+                            posRegistrado = gestionUsuario.inicioRegistrado();
                             if (posRegistrado == 5666) {
                                 System.out.println("Credenciales incorrectas. Vuelva a intentarlo.");
                             } else {
@@ -113,12 +113,13 @@ public class BolsosEA {
                             gestionUsuario.anyadirUsuario();
                             break;
                         case 3:
+                            posRegistrado = gestionUsuario.inicioInvitado();
                             gestionUsuario.sesion = "Invitado";
                             break;
                         default:
                             System.out.println("Error, vuelva a intentarlo.");
                     }
-                } while (opc == 2 || opc != 1 || opc != 3);
+                } while (posRegistrado==5666);
                 do {
                     int posicion, id;
                     String refe;
@@ -141,9 +142,9 @@ public class BolsosEA {
                             System.out.println("Escriba el id del bolso: ");
                             id = lector.nextInt();
                             posicion = gestionBolso.posBolso(id);
-                            if (gestionBolso.comprarBolso(posicion)) {
-                                //                                      String refe, int precioTotal, String nifCliente, int idBolso
-                                gestionFactura.facturas.add(new Factura(gestionFactura.newRefe(), gestionBolso.bolsos.get(posicion).precio, gestionUsuario.clientes.get(0).nif, id));
+                            if (gestionBolso.comprarBolso(posicion)) { 
+                                int precioTot= (int)(gestionBolso.bolsos.get(posicion).precio * gestionUsuario.clientes.get(posRegistrado).descuentoCliente());
+                                gestionFactura.crearFactura(precioTot, gestionUsuario.clientes.get(0).nif, id);
                             }
                             break;
                         case 4:

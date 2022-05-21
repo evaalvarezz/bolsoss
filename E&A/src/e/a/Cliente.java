@@ -17,6 +17,14 @@ public abstract class Cliente {
     protected int numTelf;
     
 
+    /**
+     * Constructor con todos los atributos.
+     * @param nif
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param numTelf 
+     */
     public Cliente(String nif, String nombre, String apellidos, String direccion, int numTelf) {
         this.nif = nif;
         this.nombre = nombre;
@@ -26,7 +34,9 @@ public abstract class Cliente {
         
     }
 
-    
+    /**
+     * Constructor predefinido.
+     */
     public Cliente() {
         nif="00000000-T";
         nombre="Juana";
@@ -35,9 +45,10 @@ public abstract class Cliente {
         numTelf=666666666;
     }
 
-
- 
-    
+    /**
+     * Método que calcula un descuento en base al tipo de Cliente.
+     * @return descuento en decimal (0 - 0.99)
+     */
     public abstract double descuentoCliente();
 
     public String getNif() {

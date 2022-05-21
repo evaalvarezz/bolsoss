@@ -17,6 +17,15 @@ public class Bolso implements Comparable<Bolso>{
     protected int precio;
     protected int id;
 
+    /**
+     * Constructor con todos los atributos.
+     * @param marca
+     * @param color
+     * @param tamaño
+     * @param cantidad
+     * @param precio
+     * @param id 
+     */
     public Bolso(String marca, String color, String tamaño, int cantidad, int precio, int id) {
         this.marca = marca;
         this.color = color;
@@ -26,6 +35,9 @@ public class Bolso implements Comparable<Bolso>{
         this.id = id;
     }
 
+    /**
+     * Constructor predefinido.
+     */
     public Bolso() {
         this.marca = "CHANEL";
         this.color = "BLANCO";
