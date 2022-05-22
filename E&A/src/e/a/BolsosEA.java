@@ -122,10 +122,11 @@ public class BolsosEA {
                             System.out.println("Error, vuelva a intentarlo.");
                     }
                 } while (posRegistrado == 5666);
-                do {
+                if(gestionUsuario.sesion.equalsIgnoreCase("Registrado")){
+                    do {
                     int posicion, id;
                     String refe;
-                    System.out.println("Bienvenido usuario \n");
+                    System.out.println("Bienvenido usuario "+ ((Registrado)gestionUsuario.clientes.get(posRegistrado)).nomUsuario + "\n");
                     System.out.println("1.Listar bolsos por precio ascendente");
                     System.out.println("2.Descripcion de bolso");
                     System.out.println("3.Comprar bolso y generar factura");
@@ -173,6 +174,37 @@ public class BolsosEA {
                             System.out.println("ERROR. Introduzca opción de nuevo");
                     }
                 } while (opcion2 != 6);
+                }else{
+                    do {
+                    int posicion, id;
+                    String refe;
+                    System.out.println("Bienvenido Invitado\n");
+                    System.out.println("1.Listar bolsos por precio ascendente");
+                    System.out.println("2.Descripcion de bolso");
+                    System.out.println("3.Comprar bolso y generar factura");
+                    System.out.println("4.Salir");
+                    opcion2 = lector.nextInt();
+                    switch (opcion2) {
+                        case 1:
+                            gestionBolso.listarBolsoAsc();
+                            break;
+                        case 2:
+                            gestionBolso.consultarBolso();
+                            break;
+                        case 3:
+                            System.out.println("Escriba el id del bolso: ");
+                            id = lector.nextInt();
+                            posicion = gestionBolso.posBolso(id);
+                            if (gestionBolso.comprarBolso(posicion)) {
+                                int precioTot = (int) (gestionBolso.bolsos.get(posicion).precio * gestionUsuario.clientes.get(posRegistrado).descuentoCliente());
+                                gestionFactura.crearFactura(precioTot, gestionUsuario.clientes.get(0).nif, id);
+                            }
+                            break;
+                        default:
+                            System.out.println("ERROR. Introduzca opción de nuevo");
+                    }
+                } while (opcion2 != 4);
+                }
             } else {
                 System.out.println("Hasta pronto");
             }
