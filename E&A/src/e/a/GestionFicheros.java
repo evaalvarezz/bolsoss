@@ -28,7 +28,7 @@ public class GestionFicheros {
     public static final String ficheroBinario = "ficheroBinario";
     public static final String ficheroTexto = "ficheroTexto";
 
-    public static void crearFicheros() {
+    public static void crearFichero() {
         File fBinario = new File(ficheroBinario);
         File fTexto = new File(ficheroTexto);
         if (!fBinario.exists()) {
@@ -46,6 +46,55 @@ public class GestionFicheros {
             }
         }
 
+    }
+
+    /**
+     * Método que genera un archivo de texto llamado "F+refe" de una Factura
+     *
+     * @param fac
+     */
+    public static void exportarFactura(Factura fac) {
+        File fFactura = new File("F" + fac.refe);
+        if (!fFactura.exists()) {
+            try {
+                fFactura.createNewFile();
+                PrintWriter pw = new PrintWriter(new FileWriter(fFactura));
+                pw.println(fac.toString());
+                pw.close();
+                System.out.println("Factura generada correctamente, bajo el nombre de " + fFactura.getName());
+            } catch (IOException e) {
+                System.out.println("Error, no se puede crear la factura.");
+            }
+
+        } else {
+            System.out.println("La factura ya ha sido generada.");
+        }
+    }
+
+    /**
+     * Método que comprueba si existe un fichero Factura y la elimina
+     * @param fac 
+     */
+    public static void eliminarFactura(Factura fac) {
+        File fFactura = new File("F" + fac.refe);
+        if (fFactura.exists()) {
+            fFactura.delete();
+            System.out.println("Factura " + "F" + fac.refe + " eliminada correctamente.");
+        }
+    }
+    
+    /**
+     * Método que comprueba si existe un fichero Factura
+     * @param fac
+     * @return si existe o no
+     */
+    public static boolean existeFactura(Factura fac){
+        boolean bool=false;
+        File fFactura = new File("F" + fac.refe);
+        if (fFactura.exists()) {
+            bool = true;
+        }
+        return bool;
     }
 
     public static void escribirFicheroBinario(ArrayList<Factura> factura) {
@@ -99,8 +148,8 @@ public class GestionFicheros {
                 String trozos[] = cadena.split(";");
                 if (trozos[0].equalsIgnoreCase("Invitado")) {
                     //Invitado(  String codigoReferido, String nif, String nombre, String apellidos, String direccion, int numTelf
-                    aux.add(new Invitado(trozos[1], trozos[2], trozos[3], trozos[4], trozos[5],Integer.parseInt(trozos[6])));
-		}else {
+                    aux.add(new Invitado(trozos[1], trozos[2], trozos[3], trozos[4], trozos[5], Integer.parseInt(trozos[6])));
+                } else {
                     //Registrado(String fechaAlta, String contrasennya, String nomUsuario, String nif, String nombre, String apellidos, String direccion, int numTelf)
                     aux.add(new Registrado(trozos[1], trozos[2], trozos[3], trozos[4], trozos[5], trozos[6], trozos[7], Integer.parseInt(trozos[8])));
                 }

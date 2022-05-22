@@ -49,7 +49,7 @@ public class GestionUsuarios {
     }
 
     /**
-     * Constrcutor que inicializa el ArrayList con "cuantos" elementos. siendo los pares
+     * Constructor que inicializa el ArrayList con "cuantos" elementos. siendo los pares
      * Invitados e impares Registrados.
      * @param cuantos 
      */

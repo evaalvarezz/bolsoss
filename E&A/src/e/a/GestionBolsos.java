@@ -24,12 +24,12 @@ public class GestionBolsos {
      */
     public int ExcepcionPropia() {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner lector = new Scanner(System.in);
         System.out.println("introduce id de bolso");
         int id = 0;
 
         try {
-            id = scanner.nextInt();
+            id = lector.nextInt();
             for (int i = 0; i < bolsos.size(); i++) {
                 if (id == bolsos.get(i).id) {
                     throw new ExcepcionPropia("este id ya esta registrado en un bolso");
@@ -47,18 +47,18 @@ public class GestionBolsos {
      */
     public void annadirBolso() {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner lector = new Scanner(System.in);
 
         System.out.println("Introduzce la marca");
-        String marca = scanner.nextLine();
+        String marca = lector.nextLine();
         System.out.println("Introduzca color");
-        String color = scanner.nextLine();
+        String color = lector.nextLine();
         System.out.println("Introduzca el tamaño");
-        String tamaño = scanner.nextLine();
+        String tamaño = lector.nextLine();
         System.out.println("Introduzca el numero de bolsos");
-        int cantidad = scanner.nextInt();
+        int cantidad = lector.nextInt();
         System.out.println("Introduzca el precio");
-        int precio = scanner.nextInt();
+        int precio = lector.nextInt();
         int id = ExcepcionPropia();
         bolsos.add(new Bolso(marca, color, tamaño, cantidad, precio, id));
         System.out.println("El bolso se ha añadido correctamente");
@@ -68,9 +68,9 @@ public class GestionBolsos {
      * Método que elimina un Bolso del ArrayList bolsos
      */
     public void eliminarBolso() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner lector = new Scanner(System.in);
         System.out.println("Introduzce el id");
-        int id = scanner.nextInt();
+        int id = lector.nextInt();
         for (int i = 0; i < bolsos.size(); i++) {
             if (bolsos.get(i).id == id) {
                 bolsos.remove(i);

@@ -102,7 +102,7 @@ public class Bolso implements Comparable<Bolso>{
 
     @Override
     public int compareTo(Bolso arg0) {
-        //return this.color.compareTo(arg0.color);//por String
+        //return this.color.compareTo(arg0.color);//por String NO LO BORRES EVITA
         return Integer.compare(this.id, arg0.id);
     }
     

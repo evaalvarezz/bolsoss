@@ -22,7 +22,7 @@ public class BolsosEA {
         GestionBolsos gestionBolso = new GestionBolsos();
         GestionUsuarios gestionUsuario = new GestionUsuarios();
         GestionFactura gestionFactura = new GestionFactura();
-        int posRegistrado=5666;
+        int posRegistrado = 5666;
 
         int opcion2;
         int opcion;
@@ -95,6 +95,7 @@ public class BolsosEA {
             } else if (opcion == 2) {
                 int opc;
                 do {
+                    posRegistrado = 5666;
                     System.out.println("Inicio de sesión\n");
                     System.out.println("1. Iniciar sesión");
                     System.out.println("2. Registrar una cuenta");
@@ -105,6 +106,7 @@ public class BolsosEA {
                             posRegistrado = gestionUsuario.inicioRegistrado();
                             if (posRegistrado == 5666) {
                                 System.out.println("Credenciales incorrectas. Vuelva a intentarlo.");
+                                posRegistrado = 5666;
                             } else {
                                 gestionUsuario.sesion = "Registrado";
                             }
@@ -119,14 +121,14 @@ public class BolsosEA {
                         default:
                             System.out.println("Error, vuelva a intentarlo.");
                     }
-                } while (posRegistrado==5666);
+                } while (posRegistrado == 5666);
                 do {
                     int posicion, id;
                     String refe;
                     System.out.println("Bienvenido usuario \n");
                     System.out.println("1.Listar bolsos por precio ascendente");
                     System.out.println("2.Descripcion de bolso");
-                    System.out.println("3.Comprar bolso");
+                    System.out.println("3.Comprar bolso y generar factura");
                     System.out.println("4.Revisar factura");
                     System.out.println("5.Devolver compra");
                     System.out.println("6.Salir");
@@ -142,8 +144,8 @@ public class BolsosEA {
                             System.out.println("Escriba el id del bolso: ");
                             id = lector.nextInt();
                             posicion = gestionBolso.posBolso(id);
-                            if (gestionBolso.comprarBolso(posicion)) { 
-                                int precioTot= (int)(gestionBolso.bolsos.get(posicion).precio * gestionUsuario.clientes.get(posRegistrado).descuentoCliente());
+                            if (gestionBolso.comprarBolso(posicion)) {
+                                int precioTot = (int) (gestionBolso.bolsos.get(posicion).precio * gestionUsuario.clientes.get(posRegistrado).descuentoCliente());
                                 gestionFactura.crearFactura(precioTot, gestionUsuario.clientes.get(0).nif, id);
                             }
                             break;

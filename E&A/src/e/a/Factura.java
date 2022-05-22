@@ -7,7 +7,7 @@ package e.a;
 
 
 /**
- *
+ * Clase Factura.
  * @author parjimal
  */
 public class Factura {
@@ -78,6 +78,8 @@ public class Factura {
         return "Factura{" + "refe=" + refe + ", precioTotal=" + precioTotal + ", nifCliente=" + nifCliente + ", idBolso=" + idBolso + '}';
     }
     
-   
+    public String toStringFichero(){
+        return this.getClass().getSimpleName() + ";"+ refe +";"+ precioTotal +";"+ nifCliente +";"+ idBolso;
+    }
     
     }
