@@ -15,17 +15,31 @@ public class CriteriosComparacion {
 
 }
 
+/**
+ * Clase que mediante la interfaz Comparator, compara 2 bolsos por el atributo precio.
+ * @author parjimal
+ */
 class porPrecio implements Comparator<Bolso> {
 
     @Override
     public int compare(Bolso arg0, Bolso arg1) {
-        //no borres evita
-        /*int aux=arg0.compareTo(arg1);
-        if(aux==0){
-            Integer.compare(arg0.precio, arg1.precio);
-        }*/
         return Integer.compare(arg0.precio, arg1.precio);
-        //return arg0.precio-arg1.precio;
+    }
+
+}
+
+/**
+ * Clase que mediante la interfaz Comparator, compara 2 bolsos por los atributos cantidad y precio.
+ * @author parjimal
+ */
+class porCantidadporPrecio implements Comparator<Bolso> {
+
+    public int compare(Bolso arg0, Bolso arg1) {
+        int aux = Integer.compare(arg0.cantidad, arg1.cantidad);
+        if (aux == 0) {
+            aux = Integer.compare(arg0.precio, arg1.precio);
+        }
+        return aux;
     }
 
 }

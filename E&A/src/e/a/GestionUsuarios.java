@@ -16,44 +16,34 @@ import java.util.Scanner;
  */
 public class GestionUsuarios {
 
-    protected static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    protected static ArrayList<Cliente> clientes;
     /**
      * String sesion usado para saber si el usuario actual es "Invitado" o
      * "Registrado".
      */
     protected String sesion = new String();
 
-    public String getSesion() {
-        return sesion;
-    }
-
-    public void setSesion(String sesion) {
-        this.sesion = sesion;
-    }
-
-    
     /**
-     * //MODIFICAR PARA QUE LEA FILE
-     * Constructor que inicializa el ArrayList con 5 usuarios, siendo los pares
-     * Invitados e impares Registrados.
+     * Constructor que inicializa el ArrayList con 5 usuarios.
      */
     public GestionUsuarios() {
         clientes = new ArrayList();
-        for (int i = 0; i < 5; i++) {
-            if (i % 2 == 0) {
-                clientes.add(new Invitado());
-            } else {
-                clientes.add(new Registrado());
-            }
-        }
+        //String fechaAlta, String contrasennya, String nomUsuario, String nif, String nombre, String apellidos, String direccion, int numTelf
+        clientes.add(new Registrado("dd/mm/aaaa", "1234", "pepe", "00000000A", "Pepe", "Pepón", "Calle pepe", 666666666));
+        clientes.add(new Registrado("dd/mm/aaaa", "1234", "susana", "00000001A", "Susana", "Lopez", "Calle susana", 666666666));
+        clientes.add(new Registrado("dd/mm/aaaa", "1234", "eva", "00000002A", "Eva", "Alvarez", "Calle eva", 666666666));
+        clientes.add(new Registrado("dd/mm/aaaa", "1234", "ale", "00000003A", "Ale", "PJ", "Calle ale", 666666666));
+        clientes.add(new Registrado("dd/mm/aaaa", "1234", "pepa", "00000004A", "Pepa", "Pepona", "Calle pepa", 666666666));
     }
 
     /**
-     * Constructor que inicializa el ArrayList con "cuantos" elementos. siendo los pares
-     * Invitados e impares Registrados.
-     * @param cuantos 
+     * Constructor que inicializa el ArrayList con "cuantos" elementos. siendo
+     * los pares Invitados e impares Registrados.
+     *
+     * @param cuantos
      */
     public GestionUsuarios(int cuantos) {
+        clientes = new ArrayList();
         for (int i = 0; i < cuantos; i++) {
             if (i % 2 == 0) {
                 clientes.add(new Invitado());
@@ -64,6 +54,12 @@ public class GestionUsuarios {
 
     }
 
+    /**
+     * Constrcutor que inicializa el ArrayList con otro recibido por su
+     * argumento de entrada.
+     *
+     * @param cliente
+     */
     public GestionUsuarios(ArrayList<Cliente> cliente) {
         this.clientes = cliente;
     }
@@ -76,11 +72,19 @@ public class GestionUsuarios {
         this.clientes = cliente;
     }
 
-    //revisar tema static importante
+    public String getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(String sesion) {
+        this.sesion = sesion;
+    }
+
     /**
      * Método que comprueba si el código referido de Invitado es válido.
+     *
      * @param nif
-     * @return 
+     * @return
      */
     public static boolean eresReferido(String nif) {
         boolean bool = false;
@@ -91,7 +95,12 @@ public class GestionUsuarios {
         }
         return bool;
     }
-    
+
+    /**
+     * Método que añade al ArrayList un Invitado.
+     *
+     * @return su posicion en el ArrayList
+     */
     public int inicioInvitado() {
         Scanner lector = new Scanner(System.in);
         int n = 0;
@@ -128,14 +137,18 @@ public class GestionUsuarios {
         return n;
     }
 
+    /**
+     * Método que carga el sistema para Registrado
+     *
+     * @return su posicion en el ArrayList
+     */
     public int inicioRegistrado() {
         int n = 5666;
         boolean bool = false;
         Scanner lector = new Scanner(System.in);
-        System.out.println("Introduce el username: ");
-        String user = lector.nextLine();
-        System.out.println("Introduce la contraseña: ");
-        String pass = lector.nextLine();
+        System.out.println("Introduce el username y contraseña (user pass): ");
+        String user = lector.next();
+        String pass = lector.next();
 
         for (int i = 0; i < clientes.size() && !bool; i++) {
             if (clientes.get(i) instanceof Registrado && ((Registrado) clientes.get(i)).nomUsuario.equalsIgnoreCase(user) && ((Registrado) clientes.get(i)).contrasennya.equalsIgnoreCase(pass)) {
@@ -147,8 +160,9 @@ public class GestionUsuarios {
         return n;
     }
 
-    
-
+    /**
+     * Método que lista todos los usuarios.
+     */
     public void listarUsuarios() {
         for (int i = 0; i < clientes.size(); i++) {
             System.out.printf(clientes.get(i).toString());
@@ -156,6 +170,9 @@ public class GestionUsuarios {
         }
     }
 
+    /**
+     * Método que elimina un usuario a partir de su dni
+     */
     public void eliminarUsuario() {
         Scanner lector = new Scanner(System.in);
         System.out.println("Introduzce el nif");
@@ -169,6 +186,9 @@ public class GestionUsuarios {
 
     }
 
+    /**
+     * Método que añade un usuario Registrado al ArrayList.
+     */
     public void anyadirUsuario() {
         Scanner lector = new Scanner(System.in);
         String fechaAlta = new SimpleDateFormat("dd-MM-yyyy").format(new Date());

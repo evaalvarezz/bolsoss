@@ -28,24 +28,70 @@ public class GestionFicheros {
     public static final String ficheroBinario = "ficheroBinario";
     public static final String ficheroTexto = "ficheroTexto";
 
-    public static void crearFichero() {
-        File fBinario = new File(ficheroBinario);
+    /**
+     * Método que comprueba si existe el "ficheroTexto"
+     * @return si existe o no.
+     */
+    public static boolean existeFichUsuario() {
+        boolean bool = false;
         File fTexto = new File(ficheroTexto);
-        if (!fBinario.exists()) {
-            try {
-                fBinario.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Error, no se puede crear fichero.");
-            }
+        if (fTexto.exists()) {
+            bool = true;
         }
-        if (!fTexto.exists()) {
+        return bool;
+    }
+
+    /**
+     * Método que llama al método existeFichUsuario() y leerFicheroTxt(), comprueba <br>
+     * si existe el fichero "ficheroTexto" y en caso afirmativo, crea el ArrayList con existeFichUsuario()
+     * @return ArrayList tipo Cliente
+     */
+    public static ArrayList<Cliente> cargarUsuario() {
+        File fTexto = new File(ficheroTexto);
+        ArrayList<Cliente> usuarios = null;
+        if (fTexto.exists()) {
+            usuarios=leerFicheroTxt();
+        } else {
             try {
                 fTexto.createNewFile();
             } catch (IOException e) {
                 System.out.println("Error, no se puede crear fichero.");
             }
         }
+        return usuarios;
+    }
+    
+    /**
+     * Método que comprueba si existe el "ficheroBinario"
+     * @return si existe o no.
+     */
+    public static boolean existeFichFactura() {
+        boolean bool = false;
+        File fBinario = new File(ficheroBinario);
+        if (fBinario.exists()) {
+            bool = true;
+        }
+        return bool;
+    }
 
+    /**
+     * Método que llama al método existeFichFactura() y leerFicheroBinario(), comprueba <br>
+     * si existe el fichero "ficheroBinario" y en caso afirmativo, crea el ArrayList.
+     * @return ArrayList tipo Factura
+     */
+    public static ArrayList<Factura> cargarFactura() {
+        ArrayList<Factura> facturas = null;
+        File fBinario = new File(ficheroBinario);
+        if (existeFichFactura()) {
+            facturas=leerFicheroBinario();
+        } else {
+            try {
+                fBinario.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Error, no se puede crear fichero.");
+            }
+        }
+        return facturas;
     }
 
     /**
@@ -73,7 +119,8 @@ public class GestionFicheros {
 
     /**
      * Método que comprueba si existe un fichero Factura y la elimina
-     * @param fac 
+     *
+     * @param fac
      */
     public static void eliminarFactura(Factura fac) {
         File fFactura = new File("F" + fac.refe);
@@ -82,14 +129,15 @@ public class GestionFicheros {
             System.out.println("Factura " + "F" + fac.refe + " eliminada correctamente.");
         }
     }
-    
+
     /**
      * Método que comprueba si existe un fichero Factura
+     *
      * @param fac
      * @return si existe o no
      */
-    public static boolean existeFactura(Factura fac){
-        boolean bool=false;
+    public static boolean existeFactura(Factura fac) {
+        boolean bool = false;
         File fFactura = new File("F" + fac.refe);
         if (fFactura.exists()) {
             bool = true;
@@ -97,6 +145,47 @@ public class GestionFicheros {
         return bool;
     }
 
+    /**
+     * Método que comprueba si existe un fichero "F+(refe)"
+     *
+     * @param refe
+     * @return si existe o no
+     */
+    public static boolean existeFactura(String refe) {
+        boolean bool = false;
+        File fFactura = new File("F" + refe);
+        if (fFactura.exists()) {
+            bool = true;
+        }
+        return bool;
+    }
+
+    /**
+     * Método que lee un fichero "F+(refe)"
+     *
+     * @param refe
+     */
+    public static void leerFactura(String refe) {
+        File fFactura = new File("F" + refe);
+        Scanner scan = new Scanner(System.in);
+        String cadena = new String();
+        try {
+            scan = new Scanner(new FileReader(fFactura));
+            while (scan.hasNextLine()) {
+                cadena = scan.nextLine();
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        scan.close();
+        System.out.println(cadena);
+    }
+
+    /**
+     * Método que escribe en un fichero binario el ArrayList factura
+     *
+     * @param factura
+     */
     public static void escribirFicheroBinario(ArrayList<Factura> factura) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(ficheroBinario));
@@ -109,6 +198,12 @@ public class GestionFicheros {
         }
     }
 
+    /**
+     * Método que carga en memoria un fichero binario a un ArrayList tipo
+     * factura
+     *
+     * @return ArrayList factura
+     */
     public static ArrayList leerFicheroBinario() {
         ArrayList aux = null;
         try {
@@ -125,6 +220,10 @@ public class GestionFicheros {
         return aux;
     }
 
+    /**
+     * Método que escribe en un fichero de texto el ArrayList clientes
+     * @param clientes
+     */
     public static void escribirFicheroTxt(ArrayList<Cliente> clientes) {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(ficheroTexto));
@@ -137,6 +236,10 @@ public class GestionFicheros {
         }
     }
 
+    /**
+     * Método que crea objetos tipo Cliente en un ArrayList a partir del ficheroTexto.
+     * @return ArrayList de tipo cliente.
+     */
     public static ArrayList<Cliente> leerFicheroTxt() {
         ArrayList<Cliente> aux = new ArrayList<Cliente>();
         Scanner scan = new Scanner(System.in);

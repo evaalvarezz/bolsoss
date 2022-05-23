@@ -13,7 +13,14 @@ import java.util.ArrayList;
  */
 public class GestionFactura {
 
-    protected ArrayList<Factura> facturas = new ArrayList<Factura>();
+    protected ArrayList<Factura> facturas;
+    
+    public GestionFactura(){
+        facturas = new ArrayList<Factura>();
+    }
+    public GestionFactura(ArrayList<Factura> fac){
+        facturas = fac;
+    }
 
     /**
      * Método que genera una refe aleatoria en base al tamaño del ArrayList
@@ -104,7 +111,8 @@ public class GestionFactura {
         boolean bool = false;
         for (int i = 0; i < facturas.size() && !bool; i++) {
             if (facturas.get(i).refe.equalsIgnoreCase(refe)) {
-                facturas.get(i);
+                System.out.println(facturas.get(i));
+                
                 bool = true;
             }
         }

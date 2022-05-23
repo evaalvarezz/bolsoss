@@ -12,20 +12,31 @@ package e.a;
 public class Invitado extends Cliente{
     protected String codigoReferido;
     
-
+    /**
+     * Constructor con todos los atributos
+     * @param codigoReferido
+     * @param nif
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param numTelf 
+     */
     public Invitado(String codigoReferido, String nif, String nombre, String apellidos, String direccion, int numTelf) {
         super(nif, nombre, apellidos, direccion, numTelf);
         this.codigoReferido = codigoReferido;
     }
 
-    public Invitado(String codigoReferido) {
-        this.codigoReferido = codigoReferido;
-    }
-
+    /**
+     * Constructor con valores por defecto a los atributos.
+     */
     public Invitado() {
         super();
         codigoReferido= "001";
     }
+    /**
+     * Método de herencia de Cliente que calcula el descuento que poseerá en la compra en caso que sea referido.
+     * @return 
+     */
     @Override
     public double descuentoCliente() {
         double descuento;
@@ -37,6 +48,14 @@ public class Invitado extends Cliente{
     }
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+ "codigoReferido=" + codigoReferido + '}';
+        return this.getClass().getSimpleName()+ "codigoReferido=" + codigoReferido;
+    }
+    
+    /**
+     * Método toStringFichero, prepara una linea de texto para la posterior creacion de objetos.
+     * @return línea de texto
+     */
+    public String toStringFichero(){
+        return super.toStringFichero() + ";"+ codigoReferido;
     }
 }

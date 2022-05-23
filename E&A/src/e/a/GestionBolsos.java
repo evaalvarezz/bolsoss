@@ -8,6 +8,7 @@ package e.a;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 /**
  *
@@ -16,6 +17,13 @@ import java.util.Scanner;
 public class GestionBolsos {
 
     protected ArrayList<Bolso> bolsos = new ArrayList<Bolso>();
+    public GestionBolsos(){
+        //String marca, String color, String tamaño, int cantidad, int precio, int id
+        bolsos.add(new Bolso("CHANEL","B","S",40,300,1));
+        bolsos.add(new Bolso("STRADIVARIUS","N","L",500,50,2));
+        bolsos.add(new Bolso("LUIS VOITTON","R","S",10,1000,3));
+        bolsos.add(new Bolso("PRIMARK","B","S",100,30,4));
+    }
 
     /**
      * Método que incorpora una Exception. En caso de crear un Bolso con id duplicado <br>
@@ -90,11 +98,33 @@ public class GestionBolsos {
     }
     
     /**
+     * Método que ordena usando la interfaz Comparable un TreeSet
+     */
+    public void listarMarca(){
+        TreeSet <String> ts= new TreeSet<String>();
+        for (int i = 0; i < bolsos.size(); i++) {
+            ts.add(bolsos.get(i).marca);
+        }
+        System.out.println("Bolsos con los que trabajamos" + ts);
+    }
+    
+    /**
      * Método que lista todos los Bolso por precio ascendente del ArrayList bolsos
      */
     public void listarBolsoAsc(){
         ArrayList<Bolso> copia = new ArrayList(bolsos);
         Collections.sort(copia, new porPrecio());
+        for (int i = 0; i < copia.size(); i++) {
+            System.out.println(copia.get(i));
+        }
+    }
+    
+    /**
+     * Método que lista todos los Bolso por precio ascendente del ArrayList bolsos
+     */
+    public void listarBolsoCantPrecio(){
+        ArrayList<Bolso> copia = new ArrayList(bolsos);
+        Collections.sort(copia, new porCantidadporPrecio());
         for (int i = 0; i < copia.size(); i++) {
             System.out.println(copia.get(i));
         }
@@ -168,14 +198,4 @@ public class GestionBolsos {
         
         return bool;
     }
-    
-    
-    /*
-    public ArrayList<Integer> todosIds(){
-        ArrayList<Integer> ids = new ArrayList();
-        for (int i = 0; i < bolsos.size(); i++) {
-            ids.add(bolsos.get(i).id);
-        }
-        return ids;
-    }*/
 }

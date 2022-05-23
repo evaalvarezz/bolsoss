@@ -5,11 +5,15 @@
  */
 package e.a;
 
+import java.io.Serializable;
+
 /**
  *
  * @author evaal
  */
-public class Bolso implements Comparable<Bolso>{
+
+//revisar para q sirve serializable
+public class Bolso implements Serializable,Comparable<Bolso>{
     protected String marca;
     protected String color;
     protected String tamanyo;
@@ -100,13 +104,9 @@ public class Bolso implements Comparable<Bolso>{
         return "Bolso{" + "marca=" + marca + ", color=" + color + ", tamanyo=" + tamanyo + ", cantidad=" + cantidad + ", precio=" + precio + "id="+id+'}';
     }
 
+    //Comparable exclusivo para TreeSet
     @Override
     public int compareTo(Bolso arg0) {
-        //return this.color.compareTo(arg0.color);//por String NO LO BORRES EVITA
-        return Integer.compare(this.id, arg0.id);
+        return this.marca.compareToIgnoreCase(arg0.marca);
     }
-    
-    
-    
-    
 }
