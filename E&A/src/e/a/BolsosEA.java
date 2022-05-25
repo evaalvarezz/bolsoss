@@ -19,27 +19,32 @@ public class BolsosEA {
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
         Administrador admin = new Administrador(); //user: admin , pass:1234
-        GestionBolsos gestionBolso = new GestionBolsos(); 
+        GestionBolsos gestionBolso = new GestionBolsos();
         GestionUsuarios gestionUsuario;
         GestionFactura gestionFactura;
 
-        
-        if(GestionFicheros.existeFichUsuario()){
+        /*
+        gestionUsuario = new GestionUsuarios();
+            System.out.println("Sistema de clientes inicial.");
+            
+            gestionFactura = new GestionFactura();
+            System.out.println("Sistema de facturas inicial.");
+         */
+        if (GestionFicheros.existeFichUsuario()) {
             gestionUsuario = new GestionUsuarios(GestionFicheros.cargarUsuario());
             System.out.println("Datos de clientes cargados correctamente.");
-        }else{
-            gestionUsuario= new GestionUsuarios();
-            System.out.println("Sistema inicial.");
+        } else {
+            gestionUsuario = new GestionUsuarios();
+            System.out.println("Sistema de clientes inicial.");
         }
-        
-        if(GestionFicheros.existeFichFactura()){
+
+        if (GestionFicheros.existeFichFactura()) {
             gestionFactura = new GestionFactura(GestionFicheros.cargarFactura());
-            System.out.println("Datos de clientes cargados correctamente.");
-        }else{
-            gestionFactura= new GestionFactura();
-            System.out.println("Sistema inicial.");
+            System.out.println("Datos de facturas cargados correctamente.");
+        } else {
+            gestionFactura = new GestionFactura();
+            System.out.println("Sistema de facturas inicial.");
         }
-        
         int posRegistrado = 5666;
 
         int opcion2;
@@ -97,11 +102,10 @@ public class BolsosEA {
                                 break;
                             case 8:
                                 System.out.println("Introduce la referencia: ");
-                                String referencia=lector.next();
-                                if(GestionFicheros.existeFactura(referencia)){
+                                String referencia = lector.next();
+                                if (GestionFicheros.existeFactura(referencia)) {
                                     GestionFicheros.leerFactura(referencia);
-                                }
-                                else{
+                                } else {
                                     System.out.println("No existe la factura.");
                                 }
                             case 9:
@@ -127,6 +131,9 @@ public class BolsosEA {
                                 break;
                             case 14:
                                 GestionFicheros.leerFicheroBinario();
+                                break;
+                            case 15:
+                                System.out.println("Has cerrado sesión correctamente.");
                                 break;
                             default:
                                 System.out.println("ERROR. Introduzca la opcion deseada");
@@ -201,8 +208,8 @@ public class BolsosEA {
                             case 5:
                                 System.out.println("Escriba la referencia de su factura: ");
                                 refe = lector.next();
-                                
-                                if(GestionFicheros.existeFactura(refe)){
+
+                                if (GestionFicheros.existeFactura(refe)) {
                                     GestionFicheros.leerFactura(refe);
                                 } else {
                                     System.out.println("No existe la factura.");
@@ -217,6 +224,9 @@ public class BolsosEA {
                                 } else {
                                     System.out.println("No existe la factura.");
                                 }
+                                break;
+                            case 7:
+                                System.out.println("Has cerrado sesión correctamente.");
                                 break;
                             default:
                                 System.out.println("ERROR. Introduzca opción de nuevo");
@@ -251,15 +261,19 @@ public class BolsosEA {
                                     gestionFactura.crearFactura(precioTot, gestionUsuario.clientes.get(posRegistrado).nif, id);
                                 }
                                 break;
+                            case 5:
+                                System.out.println("Has cerrado sesión correctamente.");
+                                break;
                             default:
                                 System.out.println("ERROR. Introduzca opción de nuevo");
                         }
                     } while (opcion2 != 5);
                 }
-            } else {
-                System.out.println("Hasta pronto");
             }
         } while (opcion != 3);
+        GestionFicheros.escribirFicheroTxt(gestionUsuario.clientes);
+        GestionFicheros.escribirFicheroBinario(gestionFactura.facturas);
+        System.out.println("Hasta pronto");
     }
 
 }

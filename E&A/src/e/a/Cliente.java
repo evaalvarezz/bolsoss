@@ -93,14 +93,14 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+ "nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion +'}';
+        return this.getClass().getSimpleName()+ " nif= " + nif + ", nombre= " + nombre + ", apellidos= " + apellidos + ", direccion= " + direccion;
     }
 
    
     
-    
+    //(String fechaAlta, String contrasennya, String nomUsuario, String nif, String nombre, String apellidos, String direccion, int numTelf)
     public String toStringFichero()  {
-         return this.getClass().getSimpleName()+ ";" + nif + ";" + nombre + ";" + apellidos + ";" + direccion + ";" + numTelf ;
+         return ";" + nif + ";" + nombre + ";" + apellidos + ";" + direccion + ";" + numTelf ;
          
     }
     

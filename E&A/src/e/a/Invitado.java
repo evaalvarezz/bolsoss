@@ -48,7 +48,7 @@ public class Invitado extends Cliente{
     }
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+ "codigoReferido=" + codigoReferido;
+        return this.getClass().getSimpleName()+ " codigoReferido= " + codigoReferido + '}';
     }
     
     /**
@@ -56,6 +56,7 @@ public class Invitado extends Cliente{
      * @return línea de texto
      */
     public String toStringFichero(){
-        return super.toStringFichero() + ";"+ codigoReferido;
+        return this.getClass().getSimpleName() + ";"+ codigoReferido + super.toStringFichero();
+        
     }
 }

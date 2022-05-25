@@ -165,7 +165,7 @@ public class GestionUsuarios {
      */
     public void listarUsuarios() {
         for (int i = 0; i < clientes.size(); i++) {
-            System.out.printf(clientes.get(i).toString());
+            System.out.println(clientes.get(i).toString());
 
         }
     }

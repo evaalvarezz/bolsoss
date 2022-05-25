@@ -25,8 +25,8 @@ import java.util.Scanner;
  */
 public class GestionFicheros {
 
-    public static final String ficheroBinario = "ficheroBinario";
-    public static final String ficheroTexto = "ficheroTexto";
+    protected static final String ficheroBinario = "ficheroBinario";
+    protected static final String ficheroTexto = "ficheroTexto";
 
     /**
      * Método que comprueba si existe el "ficheroTexto"
@@ -101,7 +101,6 @@ public class GestionFicheros {
      */
     public static void exportarFactura(Factura fac) {
         File fFactura = new File("F" + fac.refe);
-        if (!fFactura.exists()) {
             try {
                 fFactura.createNewFile();
                 PrintWriter pw = new PrintWriter(new FileWriter(fFactura));
@@ -111,10 +110,7 @@ public class GestionFicheros {
             } catch (IOException e) {
                 System.out.println("Error, no se puede crear la factura.");
             }
-
-        } else {
-            System.out.println("La factura ya ha sido generada.");
-        }
+        
     }
 
     /**
@@ -191,6 +187,7 @@ public class GestionFicheros {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(ficheroBinario));
             o.writeObject(factura);
             o.close();
+            System.out.println("Fichero generado correctamente.");
         } catch (FileNotFoundException e) {
             System.out.println("Archivo no encontrado.");
         } catch (IOException e) {
@@ -227,10 +224,11 @@ public class GestionFicheros {
     public static void escribirFicheroTxt(ArrayList<Cliente> clientes) {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(ficheroTexto));
-            for (int i = 0; i < clientes.size(); i++) {
+            for (int i = 0; i < clientes.size() && clientes.get(i) instanceof Registrado; i++) {
                 pw.println(clientes.get(i).toStringFichero());
             }
             pw.close();
+            System.out.println("Fichero generado correctamente.");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -242,25 +240,28 @@ public class GestionFicheros {
      */
     public static ArrayList<Cliente> leerFicheroTxt() {
         ArrayList<Cliente> aux = new ArrayList<Cliente>();
-        Scanner scan = new Scanner(System.in);
+        Scanner scan;
         try {
             scan = new Scanner(new FileReader(ficheroTexto));
             String cadena;
             while (scan.hasNextLine()) {
                 cadena = scan.nextLine();
                 String trozos[] = cadena.split(";");
-                if (trozos[0].equalsIgnoreCase("Invitado")) {
-                    //Invitado(  String codigoReferido, String nif, String nombre, String apellidos, String direccion, int numTelf
-                    aux.add(new Invitado(trozos[1], trozos[2], trozos[3], trozos[4], trozos[5], Integer.parseInt(trozos[6])));
-                } else {
+                if (trozos[0].equalsIgnoreCase("Registrado")) {
                     //Registrado(String fechaAlta, String contrasennya, String nomUsuario, String nif, String nombre, String apellidos, String direccion, int numTelf)
                     aux.add(new Registrado(trozos[1], trozos[2], trozos[3], trozos[4], trozos[5], trozos[6], trozos[7], Integer.parseInt(trozos[8])));
-                }
+                } /*else {
+                    
+                    
+                    //Invitado(  String codigoReferido, String nif, String nombre, String apellidos, String direccion, int numTelf
+                    aux.add(new Invitado(trozos[1], trozos[2], trozos[3], trozos[4], trozos[5], Integer.parseInt(trozos[6])));
+                }*/
             }
+            scan.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        scan.close();
+        
         return aux;
 
     }

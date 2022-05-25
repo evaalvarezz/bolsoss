@@ -68,7 +68,7 @@ public class Registrado extends Cliente {
 
     @Override
     public String toString() {
-        return super.toString() + "fechaAlta=" + fechaAlta + ", contrasennya=" + contrasennya + ", nomUsuario=" + nomUsuario;
+        return super.toString() + " fechaAlta= " + fechaAlta + ", contrasennya= " + contrasennya + ", nomUsuario= " + nomUsuario + '}';
     }
     
     /**
@@ -76,7 +76,7 @@ public class Registrado extends Cliente {
      * @return línea de texto
      */
     public String toStringFichero(){
-        return super.toStringFichero() + ";"+ fechaAlta +";"+ contrasennya +";"+ nomUsuario;
+        return this.getClass().getSimpleName() + ";"+ fechaAlta +";"+ contrasennya +";"+ nomUsuario + super.toStringFichero();
     }
 
     /**

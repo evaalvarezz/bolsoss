@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class GestionFactura {
 
-    protected ArrayList<Factura> facturas;
+    protected static ArrayList<Factura> facturas;
     
     public GestionFactura(){
         facturas = new ArrayList<Factura>();
